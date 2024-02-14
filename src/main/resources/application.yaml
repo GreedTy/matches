@@ -1,0 +1,73 @@
+server:
+  shutdown: immediate
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+
+spring:
+  liquibase:
+    contexts: default
+    database-change-log-lock-table: DATABASECHANGELOGLOCK
+    database-change-log-table: DATABASECHANGELOG
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  cache:
+    type: jcache # https://www.ehcache.org/documentation/3.10/
+    jcache:
+      provider: org.ehcache.jsr107.EhcacheCachingProvider
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  main:
+    banner-mode: off
+    lazy-initialization: false
+    keep-alive: false
+  threads:
+    virtual:
+      enabled: true
+
+logging:
+  level:
+    root: debug
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: default, local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: example
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  main:
+    dataSource:
+      jdbcUrl:
+      driverClassName:
+      username:
+      password:
+  replica:
+    dataSource:
+      jdbcUrl:
+      driverClassName:
+      username:
+      password:
+
+---
+
+spring:
+  config:
+    activate:
+      on-cloud-platform: kubernetes
+
+server:
+  shutdown: graceful

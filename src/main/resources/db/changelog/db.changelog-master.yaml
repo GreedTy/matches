@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: first_commit
+      author: bskim
+      changes:
+        - createTable:
+            tableName: material
+            columns:
+              - column:
+                  name: id
+                  type: varchar
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: true
