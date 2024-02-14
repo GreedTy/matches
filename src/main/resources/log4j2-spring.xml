@@ -42,16 +42,16 @@
         </Root>
 
         <!-- LOG "com.baeldung*" at TRACE level -->
-        <SpringProfile name="!development, !production">
-            <Logger name="com.baeldung" level="trace"></Logger>
+        <SpringProfile name="!dev">
+            <Logger name="com.example.kpractice" level="trace"></Logger>
         </SpringProfile>
 
-        <SpringProfile name="development">
-            <Logger name="com.baeldung.extensions" level="debug"></Logger>
+        <SpringProfile name="dev">
+            <Logger name="com.example.kpractice" level="debug"></Logger>
         </SpringProfile>
 
-        <SpringProfile name="production">
-            <Logger name="com.baeldung.extensions" level="error">
+        <SpringProfile name="local">
+            <Logger name="com.example.kpractice" level="error">
                 <AppenderRef ref="Console-Extensions" />
             </Logger>
         </SpringProfile>
